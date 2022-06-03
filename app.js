@@ -6,7 +6,7 @@ class App {
     constructor() {
         System.init(config);
         System.gateInit([
-            {EntityGate: UsersGate, domain: 'users'},
+            {EntityGate: UsersGate, domain: 'accounts'},
         ]);
         System.httpAdapter.run(request => System.gate.run(request));
         System.wsAdapter.run(request => System.gate.run(request));

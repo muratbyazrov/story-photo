@@ -10,8 +10,10 @@ const getUsersSchema = {
             properties: {
                 limit,
                 userId: string,
+                login: string,
+                password: string,
             },
-            required: ['limit', 'userId'],
+            required: ['limit', 'login', 'password'],
         },
     },
     required: ['params'],
