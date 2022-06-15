@@ -9,7 +9,7 @@ const getAccountsSchema = {
             type: 'object',
             properties: {
                 limit,
-                userId: string,
+                accountId: string,
                 login: string,
                 password: string,
             },
@@ -27,10 +27,10 @@ const createAccountSchema = {
         params: {
             type: 'object',
             properties: {
-                userId: string,
+                accountId: string,
                 wsSessionId: string,
             },
-            required: ['userId', 'wsSessionId'],
+            required: ['accountId', 'wsSessionId'],
         },
     },
     required: ['params'],

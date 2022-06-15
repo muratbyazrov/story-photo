@@ -1,7 +1,7 @@
 module.exports = {
     createAccount: `
-        INSERT INTO users (
-             user_id
+        INSERT INTO accounts (
+             account_id
             ,first_name
             ,last_name
             ,age
@@ -11,7 +11,7 @@ module.exports = {
             ,token
         )
         VALUES (
-             :userId::TEXT
+             :accountId::TEXT
             ,:firstName
             ,:lastName
             ,:age
@@ -20,11 +20,11 @@ module.exports = {
             ,:password
             ,:token
         )
-        ON CONFLICT (user_id) DO NOTHING;`,
+        ON CONFLICT (account_id) DO NOTHING;`,
 
     getAccounts: `
         SELECT
-             user_id AS "userId"
+             account_id AS "accountId"
             ,first_name AS "firstName"
             ,last_name AS "lastName"
             ,age
@@ -33,12 +33,12 @@ module.exports = {
             ,password
             ,token
         FROM
-            users
+            accounts
         WHERE
             TRUE
             AND login = :login
             AND password = :password
-            /*userId: user_id = :userId::TEXT*/
+            /*accountId: account_id = :accountId::TEXT*/
         /*offset: OFFSET :offset*/
         LIMIT :limit;`,
 };

@@ -4,17 +4,17 @@ const {AccountsService} = require('./accounts-service');
 
 class AccountsController {
     constructor() {
-        this.usersService = new AccountsService();
+        this.accountsService = new AccountsService();
     }
 
     getAccounts(data) {
         System.validator.validate(data, getAccountsSchema);
-        return this.usersService.getAccounts(data);
+        return this.accountsService.getAccounts(data);
     }
 
     createAccount(data) {
         System.validator.validate(data, createAccountSchema);
-        return this.usersService.createAccount(data);
+        return this.accountsService.createAccount(data);
     }
 }
 

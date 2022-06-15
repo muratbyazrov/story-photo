@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS users (
-    user_id TEXT NOT NULL UNIQUE,
+CREATE TABLE IF NOT EXISTS accounts (
+    account_id TEXT NOT NULL UNIQUE,
     first_name TEXT NOT NULL,
     last_name TEXT,
     age SMALLINT NOT NULL,

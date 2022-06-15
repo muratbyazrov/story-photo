@@ -2,11 +2,11 @@ const {AccountsController} = require('./accounts-controller.js');
 
 class AccountsGate {
     constructor() {
-        this.usersController = new AccountsController();
+        this.accountsController = new AccountsController();
     }
 
     run(data) {
-        return this.usersController[data.event](data);
+        return this.accountsController[data.event](data);
     }
 }
 
