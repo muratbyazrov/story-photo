@@ -1,5 +1,5 @@
 module.exports = {
-    createUser: `
+    createAccount: `
         INSERT INTO users (
              user_id
             ,first_name
@@ -22,7 +22,7 @@ module.exports = {
         )
         ON CONFLICT (user_id) DO NOTHING;`,
 
-    getUsers: `
+    getAccounts: `
         SELECT
              user_id AS "userId"
             ,first_name AS "firstName"

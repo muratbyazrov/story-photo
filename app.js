@@ -1,12 +1,12 @@
 const {System} = require('story-system');
 const config = require('./config.js');
-const {UsersGate} = require('./src/entities/users/users-gate.js');
+const {AccountsGate} = require('./src/entities/accounts/accounts-gate.js');
 
 class App {
     constructor() {
         System.init(config);
         System.gateInit([
-            {EntityGate: UsersGate, domain: 'accounts'},
+            {EntityGate: AccountsGate, domain: 'accounts'},
         ]);
         System.httpAdapter.run(request => System.gate.run(request));
         System.wsAdapter.run(request => System.gate.run(request));
