@@ -14,13 +14,13 @@ CREATE TABLE IF NOT EXISTS accounts (
     height TEXT,
     weight TEXT,
     country TEXT,
-    city TEXT,
+    city TEXT
 );
 
 CREATE TABLE IF NOT EXISTS interests (
     interest_id SMALLINT NOT NULL UNIQUE,
     interest_text TEXT NOT NULL UNIQUE,
-    interest_category TEXT NOT NULL UNIQUE
+    interest_category TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS interests_accounts (
