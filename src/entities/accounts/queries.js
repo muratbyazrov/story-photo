@@ -4,7 +4,7 @@ module.exports = {
              account_id
             ,first_name
             ,last_name
-            ,age
+            ,birthday
             ,photo_url
             ,login
             ,password
@@ -14,7 +14,7 @@ module.exports = {
              :accountId::TEXT
             ,:firstName
             ,:lastName
-            ,:age
+            ,:birthday
             ,:photoUrl
             ,:login
             ,:password
@@ -27,11 +27,17 @@ module.exports = {
              account_id AS "accountId"
             ,first_name AS "firstName"
             ,last_name AS "lastName"
-            ,age
+            ,birthday
             ,photo_url AS "photoUrl"
             ,login AS "login"
             ,password
             ,token
+            ,birthday
+            ,education
+            ,goal
+            ,about
+            ,height
+            ,weight
         FROM
             accounts
         WHERE
