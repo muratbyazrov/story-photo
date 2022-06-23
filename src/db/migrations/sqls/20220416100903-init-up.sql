@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS accounts (
     goal TEXT,
     about TEXT,
     height TEXT,
-    weight TEXT
+    weight TEXT,
+    country TEXT,
+    city TEXT,
 );
 
 CREATE TABLE IF NOT EXISTS interests (

@@ -38,6 +38,8 @@ module.exports = {
             ,about
             ,height
             ,weight
+            ,country
+            ,city
         FROM
             accounts
         WHERE
