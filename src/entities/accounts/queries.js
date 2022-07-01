@@ -49,4 +49,29 @@ module.exports = {
             /*accountId: account_id = :accountId::TEXT*/
         /*offset: OFFSET :offset*/
         LIMIT :limit;`,
+
+    modifyAccounts: `
+        UPDATE
+            accounts
+        SET
+            modify_datetime = NOW()
+            /*firstName: ,first_name = :firstName*/
+            /*lastName: ,last_name = :lastName*/
+            /*birthday: ,birthday = :birthday::DATE*/
+            /*photo_url: ,photoUrl = :photo_url*/
+            /*login: ,login = :login*/
+            /*password: ,password = :password*/
+            /*token: ,token = :token*/
+            /*job: ,job = :job*/
+            /*education: ,education = :education*/
+            /*goal: ,goal = :goal*/
+            /*about: ,about = :about*/
+            /*height: ,height = :height*/
+            /*weight: ,weight = :weight*/
+            /*country: ,country = :country*/
+            /*city: ,city = :city*/
+        WHERE
+            account_id = ANY(:accountIds)
+        RETURNING
+            account_id AS "accountId";`,
 };
