@@ -51,7 +51,7 @@ module.exports = {
         /*offset: OFFSET :offset*/
         LIMIT :limit;`,
 
-    modifyAccounts: `
+    modifyAccount: `
         UPDATE
             accounts
         SET
@@ -73,7 +73,7 @@ module.exports = {
             /*city: ,city = :city*/
             /*gender: ,gender = :gender*/
         WHERE
-            account_id = ANY(:accountIds)
+            account_id = :accountId
         RETURNING
              account_id AS "accountId"
             /*firstName: ,first_name AS "firstName" */

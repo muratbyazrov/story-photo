@@ -1,5 +1,5 @@
 const {System} = require('story-system');
-const {getAccounts, createAccount, modifyAccounts} = require('./queries.js');
+const {getAccounts, createAccount, modifyAccount} = require('./queries.js');
 
 class AccountsService {
     getAccounts(data) {
@@ -16,10 +16,10 @@ class AccountsService {
         });
     }
 
-    modifyAccounts(data) {
+    modifyAccount(data) {
         console.log(data);
         return System.dbAdapter.execQuery({
-            queryName: modifyAccounts,
+            queryName: modifyAccount,
             params: data.params,
         });
     }

@@ -36,15 +36,15 @@ const createAccountSchema = {
     required: ['params'],
 };
 
-const modifyAccountsSchema = {
-    id: 'modifyAccountsSchema',
+const modifyAccountSchema = {
+    id: 'modifyAccountSchema',
     type: 'object',
     additionalItems: true,
     properties: {
         params: {
             type: 'object',
             properties: {
-                accountIds: {...array, items: string},
+                accountId: string,
                 firstName: string,
                 lastName: string,
                 birthday: string,
@@ -60,7 +60,7 @@ const modifyAccountsSchema = {
                 country: string,
                 city: string,
             },
-            required: ['accountIds'],
+            required: ['accountId'],
         },
     },
     required: ['params'],
@@ -69,5 +69,5 @@ const modifyAccountsSchema = {
 module.exports = {
     getAccountsSchema,
     createAccountSchema,
-    modifyAccountsSchema,
+    modifyAccountSchema,
 };
