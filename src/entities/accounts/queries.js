@@ -70,6 +70,7 @@ module.exports = {
             /*weight: ,weight = :weight*/
             /*country: ,country = :country*/
             /*city: ,city = :city*/
+            /*gender: ,gender = :gender*/
         WHERE
             account_id = ANY(:accountIds)
         RETURNING

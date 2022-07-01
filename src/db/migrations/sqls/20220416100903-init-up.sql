@@ -1,3 +1,18 @@
+CREATE TYPE genders AS ENUM (
+    'male',
+    'female',
+    'transFemale',
+    'transMale'
+);
+
+CREATE TYPE orientations AS ENUM (
+    'heterosexual',
+    'gay',
+    'lesbian',
+    'asexual',
+    'demisexual'
+);
+
 CREATE TABLE IF NOT EXISTS accounts (
      account_id TEXT NOT NULL UNIQUE
     ,first_name TEXT NOT NULL
@@ -15,6 +30,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     ,weight TEXT
     ,country TEXT
     ,city TEXT
+    ,gender genders
+    ,orientation orientations
     ,create_datetime TIMESTAMP WITH TIME ZONE DEFAULT now()
     ,modify_datetime TIMESTAMP WITH TIME ZONE
 );
