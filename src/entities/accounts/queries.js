@@ -32,7 +32,7 @@ module.exports = {
             ,login AS "login"
             ,password
             ,token
-            ,birthday
+            ,job
             ,education
             ,goal
             ,about
@@ -40,6 +40,7 @@ module.exports = {
             ,weight
             ,country
             ,city
+            ,gender
         FROM
             accounts
         WHERE
