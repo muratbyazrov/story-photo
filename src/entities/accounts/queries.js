@@ -73,5 +73,20 @@ module.exports = {
         WHERE
             account_id = ANY(:accountIds)
         RETURNING
-            account_id AS "accountId";`,
+             account_id AS "accountId"
+            /*firstName: ,first_name AS "firstName" */
+            /*lastName: ,last_name AS "lastName" */
+            /*birthday: ,birthday */
+            /*photoUrl: ,photo_url AS "photoUrl" */
+            /*login: ,login */
+            /*password: ,password */
+            /*token: ,token */
+            /*job: ,job */
+            /*education: ,education */
+            /*goal: ,goal */
+            /*about: ,about */
+            /*height: ,height */
+            /*weight: ,weight */
+            /*country: ,country */
+            /*city: ,city */;`,
 };
