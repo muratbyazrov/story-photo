@@ -1,4 +1,4 @@
-const {System: {validator: {schemaItems: {string, limit, array}}}} = require('story-system');
+const {System: {validator: {schemaItems: {string, number, limit}}}} = require('story-system');
 
 const getAccountsSchema = {
     id: 'getAccountsSchema',
@@ -55,8 +55,8 @@ const modifyAccountSchema = {
                 education: string,
                 goal: string,
                 about: string,
-                height: string,
-                weight: string,
+                height: number,
+                weight: number,
                 country: string,
                 city: string,
             },

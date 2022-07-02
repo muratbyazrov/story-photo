@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     ,education TEXT
     ,goal TEXT
     ,about TEXT
-    ,height TEXT
-    ,weight TEXT
+    ,height SMALLINT
+    ,weight SMALLINT
     ,country TEXT
     ,city TEXT
     ,gender genders
