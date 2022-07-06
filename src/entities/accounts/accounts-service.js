@@ -1,6 +1,7 @@
 const {System} = require('story-system');
 const {
     getAccounts, createAccount, modifyAccount, getInterests, getInterestsCategories, setAccountInterests,
+    deleteAccountInterests,
 } = require('./queries.js');
 
 class AccountsService {
@@ -39,7 +40,12 @@ class AccountsService {
         });
     }
 
-    setAccountInterests(data) {
+    async setAccountInterests(data) {
+        await System.dbAdapter.execQuery({
+            queryName: deleteAccountInterests,
+            params: data.params,
+        });
+
         return System.dbAdapter.execQuery({
             queryName: setAccountInterests,
             params: data.params,

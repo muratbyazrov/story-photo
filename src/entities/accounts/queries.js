@@ -126,4 +126,10 @@ module.exports = {
         RETURNING
              account_id AS "accountId"
             ,interest_id AS "interestId";`,
+
+    deleteAccountInterests: `
+        DELETE FROM
+            accounts_interests
+        WHERE
+            account_id = :accountId;`,
 };
