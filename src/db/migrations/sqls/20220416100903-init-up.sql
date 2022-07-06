@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS interests (
     ,interest_category_id SMALLINT REFERENCES interest_categories (interest_category_id)
 );
 
-CREATE TABLE IF NOT EXISTS interests_accounts (
+CREATE TABLE IF NOT EXISTS accounts_interests (
      interest_id SMALLINT NOT NULL REFERENCES interests(interest_id)
     ,account_id TEXT NOT NULL REFERENCES accounts(account_id)
 );
