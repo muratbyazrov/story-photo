@@ -1,12 +1,14 @@
 const {System} = require('story-system');
 const config = require('./config.js');
-const {AccountsGate} = require('./src/entities/accounts/accounts-gate.js');
+const {AccountsController} = require('./src/entities/accounts/accounts-controller.js');
+const {InterestsController} = require('./src/entities/interests/interests-controller.js');
 
 class App {
     constructor() {
         System.init(config);
         System.gateInit([
-            {EntityGate: AccountsGate, domain: 'accounts'},
+            {EntityController: AccountsController, domain: 'accounts'},
+            {EntityController: InterestsController, domain: 'interests'},
         ]);
         System.httpAdapter.run(request => System.gate.run(request));
         System.wsAdapter.run(request => System.gate.run(request));
