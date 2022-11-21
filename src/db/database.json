@@ -1,11 +1,11 @@
 {
   "dev": {
     "driver": "pg",
-    "user": "story-account",
+    "user": "story",
     "password": "test",
     "database": "story-account",
-    "schema": "public",
-    "host": "127.10.10.28"
+    "schema": "story-account",
+    "host": "127.10.10.11"
   },
 
   "prod": {
@@ -13,18 +13,18 @@
     "user": {"ENV": "PRODUCTION_USERNAME"},
     "password": {"ENV": "PRODUCTION_PASSWORD"},
     "database": "story-account",
-    "schema": "public",
-    "host": "127.10.10.28"
+    "schema": "story-account",
+    "host": "127.10.10.11"
   },
 
   "pg": {
     "driver": "pg",
-    "user": "story-account",
+    "user": "story",
     "password": "test",
-    "host": "127.10.10.28",
+    "host": "127.10.10.11",
     "port": 5432,
     "database": "story-account",
-    "schema": "public",
+    "schema": "story-account",
     "ssl": "true"
   }
 }

@@ -12,8 +12,8 @@ const {
 
 module.exports = {
     db: {
-        user: DB_USER || 'story-account',
-        host: DB_HOST || '127.10.10.28',
+        user: DB_USER || 'story',
+        host: DB_HOST || '127.10.10.11',
         database: DB_DATABASE || 'story-account',
         password: DB_PASSWORD || 'test',
         port: DB_PORT || 5432,
