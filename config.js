@@ -2,7 +2,6 @@ require('dotenv').config();
 const {
     DB_USER,
     DB_HOST,
-    DB_DATABASE,
     DB_PASSWORD,
     DB_PORT,
     HTTP_PORT,
@@ -14,7 +13,8 @@ module.exports = {
     db: {
         user: DB_USER || 'story',
         host: DB_HOST || '127.10.10.11',
-        database: DB_DATABASE || 'story-account',
+        database: 'story-account',
+        schema: 'story-account',
         password: DB_PASSWORD || 'test',
         port: DB_PORT || 5432,
     },
