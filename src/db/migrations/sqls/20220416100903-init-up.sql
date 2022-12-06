@@ -14,7 +14,7 @@ CREATE TYPE orientations AS ENUM (
 );
 
 CREATE TABLE IF NOT EXISTS accounts (
-     account_id TEXT NOT NULL UNIQUE
+     account_id BIGINT NOT NULL UNIQUE
     ,first_name TEXT NOT NULL
     ,last_name TEXT
     ,birthday DATE NOT NULL
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS interests (
 
 CREATE TABLE IF NOT EXISTS accounts_interests (
      interest_id SMALLINT NOT NULL REFERENCES interests(interest_id)
-    ,account_id TEXT NOT NULL REFERENCES accounts(account_id)
+    ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
 );
 
 INSERT INTO interest_categories (
