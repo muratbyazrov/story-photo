@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS accounts (
     ,city TEXT
     ,gender genders
     ,orientation orientations
-    ,create_datetime TIMESTAMP WITH TIME ZONE DEFAULT now()
+    ,create_datetime TIMESTAMP WITH TIME ZONE DEFAULT NOW()
     ,modify_datetime TIMESTAMP WITH TIME ZONE
 );
 
