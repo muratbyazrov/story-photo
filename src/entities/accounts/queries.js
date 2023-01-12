@@ -1,53 +1,45 @@
 module.exports = {
     createAccount: `
         INSERT INTO accounts (
-             account_id
-            ,first_name
-            ,last_name
+             first_name
             ,birthday
-            ,photo_url
             ,login
             ,password
-            ,token
         )
         VALUES (
-             :accountId::TEXT
-            ,:firstName
-            ,:lastName
+             :firstName
             ,:birthday
-            ,:photoUrl
             ,:login
             ,:password
-            ,:token
         )
         ON CONFLICT (account_id) DO NOTHING;`,
 
     getAccounts: `
         SELECT
-             account_id AS "accountId"
-            ,first_name AS "firstName"
-            ,last_name AS "lastName"
-            ,birthday
-            ,photo_url AS "photoUrl"
-            ,login AS "login"
-            ,password
-            ,token
-            ,job
-            ,education
-            ,goal
-            ,about
-            ,height
-            ,weight
-            ,country
-            ,city
-            ,gender
+             ac.account_id AS "accountId"
+            ,ac.first_name AS "firstName"
+            ,ac.birthday
+            ,ac.login
+            ,ac.password
+            ,ac.job
+            ,ac.education
+            ,ac.about
+            ,ac.country
+            ,ac.city
+            ,gnd.gender_value AS "gender"
+            ,ornt.orientations_value AS "orientation"
         FROM
-            accounts
+            accounts AS ac
+            LEFT JOIN genders AS gnd ON gnd.gender_id = ac.gender_id
+            LEFT JOIN orientations AS ornt ON ac.orientation_id = ornt.orientation_id
         WHERE
             TRUE
-            AND login = :login
-            AND password = :password
-            /*accountId: account_id = :accountId::TEXT*/
+            /*login: login = :login*/
+            /*password: password = :password*/
+            /*accountId: account_id = :accountId*/
+            /*birthday: birthday = :birthday*/
+            /*country: country = :country*/
+            /*city: city = :city*/
         /*offset: OFFSET :offset*/
         LIMIT :limit;`,
 
@@ -57,38 +49,29 @@ module.exports = {
         SET
             modify_datetime = NOW()
             /*firstName: ,first_name = :firstName*/
-            /*lastName: ,last_name = :lastName*/
             /*birthday: ,birthday = :birthday::DATE*/
-            /*photo_url: ,photoUrl = :photo_url*/
             /*login: ,login = :login*/
             /*password: ,password = :password*/
-            /*token: ,token = :token*/
             /*job: ,job = :job*/
             /*education: ,education = :education*/
-            /*goal: ,goal = :goal*/
             /*about: ,about = :about*/
-            /*height: ,height = :height*/
-            /*weight: ,weight = :weight*/
             /*country: ,country = :country*/
             /*city: ,city = :city*/
-            /*gender: ,gender = :gender*/
+            /*genderId: ,gender_id = :genderId*/
+            /*orientationId: ,orientation_id = :orientationId*/
         WHERE
             account_id = :accountId
         RETURNING
              account_id AS "accountId"
             /*firstName: ,first_name AS "firstName" */
-            /*lastName: ,last_name AS "lastName" */
             /*birthday: ,birthday */
-            /*photoUrl: ,photo_url AS "photoUrl" */
             /*login: ,login */
             /*password: ,password */
-            /*token: ,token */
             /*job: ,job */
             /*education: ,education */
-            /*goal: ,goal */
             /*about: ,about */
-            /*height: ,height */
-            /*weight: ,weight */
             /*country: ,country */
+            /*genderId: ,gender_id AS "genderId"*/
+            /*orientationId: ,orientation_id AS "orientationId"*/
             /*city: ,city */;`,
 };

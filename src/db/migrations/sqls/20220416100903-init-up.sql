@@ -44,15 +44,11 @@ CREATE TABLE IF NOT EXISTS accounts (
      account_id BIGSERIAL NOT NULL UNIQUE
     ,first_name TEXT NOT NULL
     ,birthday DATE NOT NULL
-    ,photo_url TEXT NOT NULL
     ,login TEXT NOT NULL
     ,password TEXT NOT NULL
     ,job TEXT
     ,education TEXT
-    ,goal_id SMALLINT REFERENCES goals (goal_id)
     ,about TEXT
-    ,height SMALLINT
-    ,weight SMALLINT
     ,country TEXT
     ,city TEXT
     ,gender_id SMALLINT REFERENCES genders (gender_id)
@@ -64,13 +60,12 @@ CREATE TABLE IF NOT EXISTS accounts (
 INSERT INTO accounts (
      first_name
     ,birthday
-    ,photo_url
     ,login
     ,password
     ,gender_id
 ) VALUES
-     ('Мурат', NOW(), 'https://sun6-23.userapi.com/impf/c851132/v851132473/24aa8/prMVnnBDwaY.jpg?size=2560x1706&quality=96&sign=6fadaa800a9d5879559552374f736354&type=album', 'Murat', 'Byazrov', 1)
-    ,('Евгения', NOW(), 'https://sun9-47.userapi.com/impg/ZeZTD1MYyA5wDnlhPwsLXSXtusFopTNCgn0iiw/h12G_XW83Iw.jpg?size=1973x2160&quality=95&sign=1906f6f4d51f6c28a5511dc86a517c0f&type=album', 'Jane', 'Jane', 2);
+     ('Мурат', NOW(), 'Murat', 'Byazrov', 1)
+    ,('Евгения', NOW(), 'Jane', 'Jane', 2);
 
 
 CREATE TABLE IF NOT EXISTS interest_categories (
@@ -121,5 +116,11 @@ INSERT INTO interests AS ic (
 
 CREATE TABLE IF NOT EXISTS accounts_interests (
      interest_id SMALLINT NOT NULL REFERENCES interests(interest_id)
+    ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS accounts_goals (
+     goal_id BIGINT NOT NULL REFERENCES goals(goal_id)
     ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
 );
