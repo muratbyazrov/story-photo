@@ -1,28 +1,52 @@
-CREATE TYPE genders AS ENUM (
-    'male',
-    'female',
-    'transFemale',
-    'transMale'
+CREATE TABLE IF NOT EXISTS genders (
+     gender_id SMALLSERIAL NOT NULL UNIQUE
+    ,gender_value TEXT NOT NULL UNIQUE
 );
 
+INSERT INTO genders (
+    gender_value
+) VALUES
+     ('male')
+    ,('female')
+    ,('transFemale')
+    ,('transMale');
 
-CREATE TYPE orientations AS ENUM (
-    'heterosexual',
-    'gay',
-    'lesbian',
-    'asexual',
-    'demisexual'
+
+CREATE TABLE IF NOT EXISTS orientations (
+     orientation_id SMALLSERIAL NOT NULL UNIQUE
+    ,orientations_value TEXT NOT NULL UNIQUE
 );
+
+INSERT INTO orientations (
+    orientations_value
+) VALUES
+     ('heterosexual')
+    ,('gay')
+    ,('lesbian')
+    ,('asexual')
+    ,('bisexual');
+
+CREATE TABLE IF NOT EXISTS goals (
+     goal_id SMALLSERIAL NOT NULL UNIQUE
+    ,goal_value TEXT NOT NULL UNIQUE
+);
+
+INSERT INTO goals (
+    goal_value
+) VALUES
+     ('Serious relationship')
+    ,('Go on dates')
+    ,('Flirting')
+    ,('Sex');
 
 
 CREATE TABLE IF NOT EXISTS accounts (
-     account_id BIGINT NOT NULL UNIQUE
+     account_id BIGSERIAL NOT NULL UNIQUE
     ,first_name TEXT NOT NULL
     ,birthday DATE NOT NULL
     ,photo_url TEXT NOT NULL
     ,login TEXT NOT NULL
     ,password TEXT NOT NULL
-    ,token TEXT
     ,job TEXT
     ,education TEXT
     ,goal_id SMALLINT REFERENCES goals (goal_id)
@@ -31,8 +55,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     ,weight SMALLINT
     ,country TEXT
     ,city TEXT
-    ,gender genders NOT NULL
-    ,orientation orientations
+    ,gender_id SMALLINT REFERENCES genders (gender_id)
+    ,orientation_id SMALLINT REFERENCES orientations (orientation_id)
     ,create_datetime TIMESTAMP WITH TIME ZONE DEFAULT NOW()
     ,modify_datetime TIMESTAMP WITH TIME ZONE
 );
@@ -43,25 +67,11 @@ INSERT INTO accounts (
     ,photo_url
     ,login
     ,password
-    ,gender
+    ,gender_id
 ) VALUES
-     ('Мурат', NOW(), 'https://sun6-23.userapi.com/impf/c851132/v851132473/24aa8/prMVnnBDwaY.jpg?size=2560x1706&quality=96&sign=6fadaa800a9d5879559552374f736354&type=album', 'Murat', 'Byazrov', 'male')
-    ,('Евгения', NOW(), 'https://sun9-47.userapi.com/impg/ZeZTD1MYyA5wDnlhPwsLXSXtusFopTNCgn0iiw/h12G_XW83Iw.jpg?size=1973x2160&quality=95&sign=1906f6f4d51f6c28a5511dc86a517c0f&type=album', 'Jane', 'Jane', 'female')
+     ('Мурат', NOW(), 'https://sun6-23.userapi.com/impf/c851132/v851132473/24aa8/prMVnnBDwaY.jpg?size=2560x1706&quality=96&sign=6fadaa800a9d5879559552374f736354&type=album', 'Murat', 'Byazrov', 1)
+    ,('Евгения', NOW(), 'https://sun9-47.userapi.com/impg/ZeZTD1MYyA5wDnlhPwsLXSXtusFopTNCgn0iiw/h12G_XW83Iw.jpg?size=1973x2160&quality=95&sign=1906f6f4d51f6c28a5511dc86a517c0f&type=album', 'Jane', 'Jane', 2);
 
-
-CREATE TABLE IF NOT EXISTS goals (
-     goal_id SMALLSERIAL NOT NULL UNIQUE
-    ,goal_value TEXT NOT NULL UNIQUE
-);
-
-INSERT INTO goals (
-    goal_value
-) VALUES (
-     ('Серьезные отношения')
-    ,('Ходить на свидания')
-    ,('Просто флирт')
-    ,('Секс')
-)
 
 CREATE TABLE IF NOT EXISTS interest_categories (
      interest_category_id SMALLSERIAL NOT NULL UNIQUE
@@ -89,8 +99,7 @@ CREATE TABLE IF NOT EXISTS interests (
 
 INSERT INTO interests AS ic (
      interest_category_id
-    ,interest_value_ru
-    ,interest_value_en
+    ,interest_value
 ) VALUES
      (1, 'Здоровое питание')
     ,(1, 'ВкуссВилл')
