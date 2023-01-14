@@ -66,8 +66,44 @@ const modifyAccountSchema = {
     required: ['params'],
 };
 
+const getInterestCategoriesSchema = {
+    id: 'getInterestCategoriesSchema',
+    type: 'object',
+    additionalItems: true,
+    properties: {
+        params: {
+            type: 'object',
+            properties: {
+                interestCategoryId: number,
+                interestCategoryValue: string,
+            },
+            required: [],
+        },
+    },
+    required: ['params'],
+};
+
+const getInterestsSchema = {
+    id: 'getInterestsSchema',
+    type: 'object',
+    additionalItems: true,
+    properties: {
+        params: {
+            type: 'object',
+            properties: {
+                interestCategoryId: number,
+                interestValue: string,
+            },
+            required: [],
+        },
+    },
+    required: ['params'],
+};
+
 module.exports = {
     getAccountsSchema,
     createAccountSchema,
     modifyAccountSchema,
+    getInterestCategoriesSchema,
+    getInterestsSchema,
 };

@@ -1,5 +1,11 @@
 const {System} = require('story-system');
-const {getAccountsSchema, createAccountSchema, modifyAccountSchema} = require('./schemas.js');
+const {
+    getAccountsSchema,
+    createAccountSchema,
+    modifyAccountSchema,
+    getInterestCategoriesSchema,
+    getInterestsSchema,
+} = require('./schemas.js');
 const {AccountsService} = require('./accounts-service');
 
 class AccountsController {
@@ -22,19 +28,14 @@ class AccountsController {
         return this.accountsService.modifyAccount(data);
     }
 
-    getGoals(data) {
-        System.validator.validate(data, getGoalsSchema);
-        return this.accountsService.getGoals(data);
-    }
-
     getInterestCategories(data) {
         System.validator.validate(data, getInterestCategoriesSchema);
         return this.accountsService.getInterestCategories(data);
     }
 
-    getAccountInterests(data) {
-        System.validator.validate(data, getAccountInterestsSchema);
-        return this.accountsService.getAccountInterests(data);
+    getInterests(data) {
+        System.validator.validate(data, getInterestsSchema);
+        return this.accountsService.getInterests(data);
     }
 }
 
