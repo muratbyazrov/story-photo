@@ -19,12 +19,12 @@ module.exports = {
         port: DB_PORT || 5432,
     },
     http: {
-        host: '192.168.236.109',
+        host: '192.168.18.176',
         port: HTTP_PORT || 3001,
         path: HTTP_PATH || '/story-account-api/v1',
     },
     ws: {
-        host: '192.168.236.109',
+        host: '192.168.18.176',
         port: WS_PORT || 9001,
     },
 };

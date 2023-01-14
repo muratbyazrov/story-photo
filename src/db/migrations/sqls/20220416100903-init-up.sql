@@ -1,44 +1,6 @@
-CREATE TABLE IF NOT EXISTS genders (
-     gender_id SMALLSERIAL NOT NULL UNIQUE
-    ,gender_value TEXT NOT NULL UNIQUE
-);
-
-INSERT INTO genders (
-    gender_value
-) VALUES
-     ('male')
-    ,('female')
-    ,('transFemale')
-    ,('transMale');
-
-
-CREATE TABLE IF NOT EXISTS orientations (
-     orientation_id SMALLSERIAL NOT NULL UNIQUE
-    ,orientations_value TEXT NOT NULL UNIQUE
-);
-
-INSERT INTO orientations (
-    orientations_value
-) VALUES
-     ('heterosexual')
-    ,('gay')
-    ,('lesbian')
-    ,('asexual')
-    ,('bisexual');
-
-CREATE TABLE IF NOT EXISTS goals (
-     goal_id SMALLSERIAL NOT NULL UNIQUE
-    ,goal_value TEXT NOT NULL UNIQUE
-);
-
-INSERT INTO goals (
-    goal_value
-) VALUES
-     ('Serious relationship')
-    ,('Go on dates')
-    ,('Flirting')
-    ,('Sex');
-
+CREATE TYPE genders AS ENUM ('male', 'female', 'transFemale', 'transMale');
+CREATE TYPE orientations AS ENUM ('heterosexual', 'gay', 'lesbian', 'bisexual', 'asexual');
+CREATE TYPE goals AS ENUM ('relationship', 'dates', 'flirt', 'sex');
 
 CREATE TABLE IF NOT EXISTS accounts (
      account_id BIGSERIAL NOT NULL UNIQUE
@@ -51,8 +13,9 @@ CREATE TABLE IF NOT EXISTS accounts (
     ,about TEXT
     ,country TEXT
     ,city TEXT
-    ,gender_id SMALLINT REFERENCES genders (gender_id)
-    ,orientation_id SMALLINT REFERENCES orientations (orientation_id)
+    ,gender genders
+    ,orientation orientations
+    ,goal goals
     ,create_datetime TIMESTAMP WITH TIME ZONE DEFAULT NOW()
     ,modify_datetime TIMESTAMP WITH TIME ZONE
 );
@@ -62,10 +25,10 @@ INSERT INTO accounts (
     ,birthday
     ,login
     ,password
-    ,gender_id
+    ,orientation
 ) VALUES
-     ('Мурат', NOW(), 'Murat', 'Byazrov', 1)
-    ,('Евгения', NOW(), 'Jane', 'Jane', 2);
+     ('Мурат', NOW(), 'Murat', 'Byazrov', 'heterosexual')
+    ,('Евгения', NOW(), 'Jane', 'Jane', 'heterosexual');
 
 
 CREATE TABLE IF NOT EXISTS interest_categories (
@@ -116,11 +79,5 @@ INSERT INTO interests AS ic (
 
 CREATE TABLE IF NOT EXISTS accounts_interests (
      interest_id SMALLINT NOT NULL REFERENCES interests(interest_id)
-    ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
-);
-
-
-CREATE TABLE IF NOT EXISTS accounts_goals (
-     goal_id BIGINT NOT NULL REFERENCES goals(goal_id)
     ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
 );

@@ -21,6 +21,21 @@ class AccountsController {
         System.validator.validate(data, modifyAccountSchema);
         return this.accountsService.modifyAccount(data);
     }
+
+    getGoals(data) {
+        System.validator.validate(data, getGoalsSchema);
+        return this.accountsService.getGoals(data);
+    }
+
+    getInterestCategories(data) {
+        System.validator.validate(data, getInterestCategoriesSchema);
+        return this.accountsService.getInterestCategories(data);
+    }
+
+    getAccountInterests(data) {
+        System.validator.validate(data, getAccountInterestsSchema);
+        return this.accountsService.getAccountInterests(data);
+    }
 }
 
 module.exports = {AccountsController};
