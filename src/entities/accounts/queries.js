@@ -33,12 +33,12 @@ module.exports = {
             accounts AS ac
         WHERE
             TRUE
-            /*login: login = :login*/
-            /*password: password = :password*/
-            /*accountId: account_id = :accountId*/
-            /*birthday: birthday = :birthday*/
-            /*country: country = :country*/
-            /*city: city = :city*/
+            /*login: AND login = :login*/
+            /*password: AND password = :password*/
+            /*accountId: AND account_id = :accountId*/
+            /*birthday: AND birthday = :birthday*/
+            /*country: AND country = :country*/
+            /*city: AND city = :city*/
         /*offset: OFFSET :offset*/
         LIMIT :limit;`,
 
