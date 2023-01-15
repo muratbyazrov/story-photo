@@ -16,22 +16,21 @@ module.exports = {
 
     getAccounts: `
         SELECT
-             ac.account_id AS "accountId"
-            ,ac.first_name AS "firstName"
-            ,ac.birthday
-            ,ac.login
-            ,ac.password
-            ,ac.job
-            ,ac.education
-            ,ac.about
-            ,ac.country
-            ,ac.city
-            ,gnd.gender_value AS "gender"
-            ,ornt.orientations_value AS "orientation"
+             account_id AS "accountId"
+            ,first_name AS "firstName"
+            ,birthday
+            ,login
+            ,password
+            ,job
+            ,education
+            ,about
+            ,country
+            ,city
+            ,gender
+            ,orientation
+            ,goal
         FROM
             accounts AS ac
-            LEFT JOIN genders AS gnd ON gnd.gender_id = ac.gender_id
-            LEFT JOIN orientations AS ornt ON ac.orientation_id = ornt.orientation_id
         WHERE
             TRUE
             /*login: login = :login*/
@@ -57,8 +56,9 @@ module.exports = {
             /*about: ,about = :about*/
             /*country: ,country = :country*/
             /*city: ,city = :city*/
-            /*genderId: ,gender_id = :genderId*/
-            /*orientationId: ,orientation_id = :orientationId*/
+            /*gender: ,gender = :gender*/
+            /*orientation: ,orientation = :orientation*/
+            /*goal: ,goal = :goal*/
         WHERE
             account_id = :accountId
         RETURNING
@@ -71,7 +71,8 @@ module.exports = {
             /*education: ,education */
             /*about: ,about */
             /*country: ,country */
-            /*genderId: ,gender_id AS "genderId"*/
-            /*orientationId: ,orientation_id AS "orientationId"*/
+            /*gender: ,gender AS "gender"*/
+            /*orientation: ,orientation AS "orientation"*/
+            /*goal: ,goal AS "goal"*/
             /*city: ,city */;`,
 };
