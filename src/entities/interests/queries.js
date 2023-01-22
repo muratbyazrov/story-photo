@@ -2,8 +2,8 @@ module.exports = {
     getInterests: `
         SELECT
              interest_id AS "interestId"
-            ,interest_value_ru AS "interestValueRu"
-            ,interest_value_en AS "interestValueEn"
+            ,en_US AS "en_US"
+            ,ru_RU AS "ru_RU"
             ,interest_category_id AS "interestCategoryId"
         FROM
             interests
@@ -14,8 +14,8 @@ module.exports = {
     getInterestsCategories: `
         SELECT
              interest_category_id AS "interestCategoryId"
-            ,interest_category_value_ru AS "interestCategoryValueRu"
-            ,interest_category_value_en AS "interestCategoryValueEn"
+            ,en_US AS "en_US"
+            ,ru_RU AS "ru_RU"
         FROM
             interest_categories
         WHERE
@@ -30,6 +30,7 @@ module.exports = {
              (UNNEST(:interestIds::INT[]))
             ,:accountId
         )
+        ON CONFLICT DO NOTHING
         RETURNING
              account_id AS "accountId"
             ,interest_id AS "interestId";`,

@@ -33,51 +33,54 @@ INSERT INTO accounts (
 
 CREATE TABLE IF NOT EXISTS interest_categories (
      interest_category_id SMALLSERIAL NOT NULL UNIQUE
-    ,interest_category_value TEXT NOT NULL UNIQUE
+    ,en_US TEXT NOT NULL UNIQUE
+    ,ru_RU TEXT NOT NULL UNIQUE
 );
 
 INSERT INTO interest_categories (
-     interest_category_value
+     en_US, ru_RU
 ) VALUES
-     ('Еда')
-    ,('Музыка')
-    ,('Фильмы')
-    ,('Мода')
-    ,('Спорт')
-    ,('Автомобили')
-    ,('Технологии')
-    ,('Образование');
+     ('Selected', 'Выбранные')
+    ,('Eat','Еда')
+    ,('Music', 'Музыка')
+    ,('Movies', 'Фильмы')
+    ,('Fashion', 'Мода')
+    ,('Sport', 'Спорт')
+    ,('Cars', 'Автомобили')
+    ,('Technologies', 'Технологии')
+    ,('Education', 'Образование');
 
 
 CREATE TABLE IF NOT EXISTS interests (
      interest_id SMALLSERIAL NOT NULL UNIQUE
-    ,interest_value TEXT NOT NULL UNIQUE
+    ,en_US TEXT NOT NULL UNIQUE
+    ,ru_RU TEXT NOT NULL UNIQUE
     ,interest_category_id SMALLINT REFERENCES interest_categories (interest_category_id)
 );
 
-INSERT INTO interests AS ic (
-     interest_category_id
-    ,interest_value
+INSERT INTO interests (
+     en_US, ru_RU, interest_category_id
 ) VALUES
-     (1, 'Здоровое питание')
-    ,(1, 'ВкуссВилл')
-    ,(2, 'Рок')
-    ,(2, 'Метал')
-    ,(3, 'Марвел')
-    ,(3, 'DC')
-    ,(4, 'Zara')
-    ,(4, 'Ногти')
-    ,(5, 'Велоспорт')
-    ,(5, 'Лыжи')
-    ,(6, 'ТопГир')
-    ,(6, 'Мерседес')
-    ,(7, 'Курсы программирвания')
-    ,(7, 'JavaScript')
-    ,(8, 'Школа')
-    ,(8, 'Английский язык');
+     ('Health food', 'Здоровое питание', 2)
+    ,('Vegetarianism', 'Вегетарианство', 2)
+    ,('Rock', 'Рок', 3)
+    ,('Metal', 'Метал', 3)
+    ,('Marvel', 'Марвел', 4)
+    ,('DC', 'DC', 4)
+    ,('Zara', 'Zara', 5)
+    ,('Skill', ' Кожа', 5)
+    ,('BikeSport', 'Велоспорт', 6)
+    ,('Boxing', 'Бокс', 6)
+    ,('TopGear', 'ТопГир', 7)
+    ,('Mercedes', 'Мерседес', 7)
+    ,('Silicon Valley', 'Кремниевая долина', 8)
+    ,('JavaScript', 'JavaScript', 8)
+    ,('School', 'Школа', 9)
+    ,('English', 'Английский язык', 9);
 
 
 CREATE TABLE IF NOT EXISTS accounts_interests (
      interest_id SMALLINT NOT NULL REFERENCES interests(interest_id)
     ,account_id BIGINT NOT NULL REFERENCES accounts(account_id)
+    ,UNIQUE (interest_id, account_id)
 );
