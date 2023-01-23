@@ -21,6 +21,19 @@ module.exports = {
         WHERE
             TRUE;`,
 
+    getAccountInterests: `
+        SELECT
+             ai.account_id AS "accountId"
+            ,i.interest_category_id AS "interestCategoryId"
+            ,i.interest_id AS "interestId"
+            ,i.en_us AS "en_US"
+            ,i.ru_ru AS "ru_RU"
+        FROM
+            accounts_interests AS ai
+            LEFT JOIN interests AS i ON ai.interest_id = i.interest_id
+        WHERE
+            ai.account_id = :accountId;`,
+
     setAccountInterests: `
         INSERT INTO accounts_interests (
              interest_id

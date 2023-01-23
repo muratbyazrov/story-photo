@@ -1,5 +1,11 @@
 const {System} = require('story-system');
-const {getInterests, getInterestsCategories, setAccountInterests, deleteAccountInterests} = require('./queries.js');
+const {
+    getInterests,
+    getInterestsCategories,
+    setAccountInterests,
+    deleteAccountInterests,
+    getAccountInterests,
+} = require('./queries.js');
 
 class InterestsService {
     getInterests(data) {
@@ -12,6 +18,13 @@ class InterestsService {
     getInterestsCategories(data) {
         return System.dbAdapter.execQuery({
             queryName: getInterestsCategories,
+            params: data.params,
+        });
+    }
+
+    getAccountInterests(data) {
+        return System.dbAdapter.execQuery({
+            queryName: getAccountInterests,
             params: data.params,
         });
     }

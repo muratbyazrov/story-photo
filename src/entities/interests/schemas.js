@@ -45,8 +45,25 @@ const setAccountInterestsSchema = {
     required: ['params'],
 };
 
+const getAccountInterestsSchema = {
+    id: 'getAccountInterestsSchema',
+    type: 'object',
+    additionalItems: true,
+    properties: {
+        params: {
+            type: 'object',
+            properties: {
+                accountId: string,
+            },
+            required: ['accountId'],
+        },
+    },
+    required: ['params'],
+};
+
 module.exports = {
     getInterestsSchema,
     getInterestsCategoriesSchema,
     setAccountInterestsSchema,
+    getAccountInterestsSchema,
 };

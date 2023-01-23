@@ -1,5 +1,10 @@
 const {System} = require('story-system');
-const {getInterestsSchema, getInterestsCategoriesSchema, setAccountInterestsSchema} = require('./schemas.js');
+const {
+    getInterestsSchema,
+    getInterestsCategoriesSchema,
+    setAccountInterestsSchema,
+    getAccountInterestsSchema,
+} = require('./schemas.js');
 const {InterestsService} = require('./interests-service');
 
 class InterestsController {
@@ -15,6 +20,11 @@ class InterestsController {
     getInterestsCategories(data) {
         System.validator.validate(data, getInterestsCategoriesSchema);
         return this.interestsService.getInterestsCategories(data);
+    }
+
+    getAccountInterests(data) {
+        System.validator.validate(data, getAccountInterestsSchema);
+        return this.interestsService.getAccountInterests(data);
     }
 
     setAccountInterests(data) {
