@@ -1,4 +1,4 @@
-const {System} = require('story-system');
+const {Story} = require('story-system');
 const {
     getInterests,
     getInterestsCategories,
@@ -9,33 +9,33 @@ const {
 
 class InterestsService {
     getInterests(data) {
-        return System.dbAdapter.execQuery({
+        return Story.dbAdapter.execQuery({
             queryName: getInterests,
             params: data.params,
         });
     }
 
     getInterestsCategories(data) {
-        return System.dbAdapter.execQuery({
+        return Story.dbAdapter.execQuery({
             queryName: getInterestsCategories,
             params: data.params,
         });
     }
 
     getAccountInterests(data) {
-        return System.dbAdapter.execQuery({
+        return Story.dbAdapter.execQuery({
             queryName: getAccountInterests,
             params: data.params,
         });
     }
 
     async setAccountInterests(data) {
-        await System.dbAdapter.execQuery({
+        await Story.dbAdapter.execQuery({
             queryName: deleteAccountInterests,
             params: data.params,
         });
 
-        return System.dbAdapter.execQuery({
+        return Story.dbAdapter.execQuery({
             queryName: setAccountInterests,
             params: data.params,
         });

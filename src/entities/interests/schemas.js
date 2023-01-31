@@ -1,4 +1,4 @@
-const {System: {validator: {schemaItems: {string, number, array}}}} = require('story-system');
+const {Story: {validator: {schemaItems: {string, number, array}}}} = require('story-system');
 
 const getInterestsSchema = {
     id: 'getInterestsSchema',

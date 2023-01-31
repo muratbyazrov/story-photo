@@ -1,4 +1,4 @@
-const {System} = require('story-system');
+const {Story} = require('story-system');
 const {
     getAccountsSchema,
     createAccountSchema,
@@ -7,6 +7,7 @@ const {
     getInterestsSchema,
 } = require('./schemas.js');
 const {AccountsService} = require('./accounts-service');
+const {token} = require('../../../config');
 
 class AccountsController {
     constructor() {
@@ -14,27 +15,29 @@ class AccountsController {
     }
 
     getAccounts(data) {
-        System.validator.validate(data, getAccountsSchema);
+        Story.validator.validate(data, getAccountsSchema);
+        const test = Story.token.generateToken({token}, data);
+        console.log(2222222222, test);
         return this.accountsService.getAccounts(data);
     }
 
     createAccount(data) {
-        System.validator.validate(data, createAccountSchema);
+        Story.validator.validate(data, createAccountSchema);
         return this.accountsService.createAccount(data);
     }
 
     modifyAccount(data) {
-        System.validator.validate(data, modifyAccountSchema);
+        Story.validator.validate(data, modifyAccountSchema);
         return this.accountsService.modifyAccount(data);
     }
 
     getInterestCategories(data) {
-        System.validator.validate(data, getInterestCategoriesSchema);
+        Story.validator.validate(data, getInterestCategoriesSchema);
         return this.accountsService.getInterestCategories(data);
     }
 
     getInterests(data) {
-        System.validator.validate(data, getInterestsSchema);
+        Story.validator.validate(data, getInterestsSchema);
         return this.accountsService.getInterests(data);
     }
 }
