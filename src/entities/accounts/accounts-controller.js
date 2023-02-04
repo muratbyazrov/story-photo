@@ -5,6 +5,7 @@ const {
     modifyAccountSchema,
     getInterestCategoriesSchema,
     getInterestsSchema,
+    signInSchema,
 } = require('./schemas.js');
 const {AccountsService} = require('./accounts-service');
 const {token} = require('../../../config');
@@ -14,10 +15,18 @@ class AccountsController {
         this.accountsService = new AccountsService();
     }
 
+    async signIn(data) {
+        Story.validator.validate(data, signInSchema);
+        const [account] = await this.accountsService.getAccounts(data);
+        if (!account) {
+            throw new Story.errors.Forbidden('Нет такого аккаунта');
+        }
+
+        return {token: await Story.token.generateToken(account, {token})};
+    }
+
     getAccounts(data) {
         Story.validator.validate(data, getAccountsSchema);
-        const test = Story.token.generateToken({token}, data);
-        console.log(2222222222, test);
         return this.accountsService.getAccounts(data);
     }
 

@@ -40,7 +40,7 @@ module.exports = {
             /*country: AND country = :country*/
             /*city: AND city = :city*/
         /*offset: OFFSET :offset*/
-        LIMIT :limit;`,
+        /*limit: LIMIT :limit;*/`,
 
     modifyAccount: `
         UPDATE

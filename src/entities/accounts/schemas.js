@@ -13,7 +13,7 @@ const getAccountsSchema = {
                 login: string,
                 password: string,
             },
-            required: ['limit', 'login', 'password'],
+            required: ['limit'],
         },
     },
     required: ['params'],
@@ -100,10 +100,28 @@ const getInterestsSchema = {
     required: ['params'],
 };
 
+const signInSchema = {
+    id: 'signInSchema',
+    type: 'object',
+    additionalItems: true,
+    properties: {
+        params: {
+            type: 'object',
+            properties: {
+                login: string,
+                password: string,
+            },
+            required: ['login', 'password'],
+        },
+    },
+    required: ['params'],
+};
+
 module.exports = {
     getAccountsSchema,
     createAccountSchema,
     modifyAccountSchema,
     getInterestCategoriesSchema,
     getInterestsSchema,
+    signInSchema,
 };

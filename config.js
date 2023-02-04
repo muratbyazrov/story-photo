@@ -1,4 +1,5 @@
-require('dotenv').config();
+require('dotenv')
+    .config();
 const {
     DB_USER,
     DB_HOST,
@@ -28,7 +29,11 @@ module.exports = {
         port: WS_PORT || 9001,
     },
     token: {
+        enabled: true,
         key: 'token-key',
         expiresIn: 60 * 1000,
+        uncheckMethods: {
+            accounts: 'signIn',
+        },
     },
 };
