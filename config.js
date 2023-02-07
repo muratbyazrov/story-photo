@@ -28,6 +28,13 @@ module.exports = {
         host: '192.168.1.13',
         port: WS_PORT || 9001,
     },
+    rmq: {
+        host: '127.10.10.11',
+        port: 5672,
+        queueName: 'cats',
+        user: 'test',
+        password: 'test',
+    },
     token: {
         enabled: true,
         key: 'token-key',
