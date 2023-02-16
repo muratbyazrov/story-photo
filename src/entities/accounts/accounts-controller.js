@@ -27,6 +27,7 @@ class AccountsController {
 
     getAccounts(data) {
         Story.validator.validate(data, getAccountsSchema);
+        Story.rmqAdapter.send('hi');
         return this.accountsService.getAccounts(data);
     }
 
