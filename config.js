@@ -20,29 +20,41 @@ module.exports = {
         port: DB_PORT || 5432,
     },
     http: {
-        host: '192.168.1.13',
+        host: '192.168.1.18',
         port: HTTP_PORT || 3001,
         path: HTTP_PATH || '/story-account-api/v1',
     },
     ws: {
-        host: '192.168.1.13',
+        host: '192.168.1.18',
         port: WS_PORT || 9001,
     },
     rmq: {
-        host: '127.10.10.11',
-        port: 5672,
-        queueName: 'cats',
-        user: 'test',
-        password: 'test',
-        exchange: 'story',
-        exchangeType: 'direct',
-        exchangeDurable: false,
-        queue: 'account',
-        queueDurable: false,
-        noAck: true,
-        prefetchCount: 1,
-        xMessageTtl: 10 * 60 * 1000,
-        bindQueuePattern: 'story',
+        connect: {
+            host: '127.10.10.11',
+            port: 5672,
+            queueName: 'cats',
+            user: 'test',
+            password: 'test',
+        },
+        consume: {
+            exchange: 'story',
+            queue: 'account',
+            prefetchCount: 1,
+        },
+        publishDomains: {
+            messenger: {
+                exchange: 'messenger',
+                queue: 'messenger',
+            },
+            photo: {
+                exchange: 'messenger',
+                queue: 'messenger',
+            },
+            account: {
+                exchange: 'story',
+                queue: 'account',
+            },
+        },
     },
     token: {
         enabled: true,
