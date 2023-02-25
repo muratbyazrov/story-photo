@@ -8,7 +8,7 @@ const {
     signInSchema,
 } = require('./schemas.js');
 const {AccountsService} = require('./accounts-service');
-const {token, rmq: {publishDomains}} = require('../../../config');
+const {token, rmq: {publish: {domains}}} = require('../../../config');
 
 class AccountsController {
     constructor() {
@@ -22,7 +22,14 @@ class AccountsController {
             throw new Story.errors.Forbidden('Нет такого аккаунта');
         }
 
-        await Story.rmqAdapter.publish('hi', publishDomains.account);
+        await Story.rmqAdapter.publish({
+            message: {
+                domain: 'test',
+                event: 'test',
+                data: {},
+            },
+            options: domains.account,
+        });
 
         return {token: await Story.token.generateToken(account, {token})};
     }

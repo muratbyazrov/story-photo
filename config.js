@@ -32,27 +32,19 @@ module.exports = {
         connect: {
             host: '127.10.10.11',
             port: 5672,
-            queueName: 'cats',
             user: 'test',
             password: 'test',
         },
         consume: {
             exchange: 'story',
             queue: 'account',
-            prefetchCount: 1,
+            selfAck: false,
         },
-        publishDomains: {
-            messenger: {
-                exchange: 'messenger',
-                queue: 'messenger',
-            },
-            photo: {
-                exchange: 'messenger',
-                queue: 'messenger',
-            },
-            account: {
-                exchange: 'story',
-                queue: 'account',
+        publish: {
+            domains: {
+                account: {
+                    exchange: 'story',
+                },
             },
         },
     },
