@@ -7,7 +7,6 @@ const {
     DB_PORT,
     HTTP_PORT,
     HTTP_PATH,
-    WS_PORT,
 } = process.env;
 
 module.exports = {
@@ -24,10 +23,6 @@ module.exports = {
         port: HTTP_PORT || 3001,
         path: HTTP_PATH || '/story-account-api/v1',
     },
-    ws: {
-        host: '192.168.1.18',
-        port: WS_PORT || 9001,
-    },
     rmq: {
         connect: {
             host: '127.10.10.11',
@@ -38,10 +33,10 @@ module.exports = {
         consume: {
             exchange: 'story',
             queue: 'account',
-            selfAck: false,
+            selfAck: true,
         },
         publish: {
-            domains: {
+            exchanges: {
                 account: {
                     exchange: 'story',
                 },

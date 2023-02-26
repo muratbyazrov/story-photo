@@ -8,7 +8,7 @@ const {
     signInSchema,
 } = require('./schemas.js');
 const {AccountsService} = require('./accounts-service');
-const {token, rmq: {publish: {domains}}} = require('../../../config');
+const config = require('../../../config');
 
 class AccountsController {
     constructor() {
@@ -22,16 +22,7 @@ class AccountsController {
             throw new Story.errors.Forbidden('Нет такого аккаунта');
         }
 
-        await Story.rmqAdapter.publish({
-            message: {
-                domain: 'test',
-                event: 'test',
-                data: {},
-            },
-            options: domains.account,
-        });
-
-        return {token: await Story.token.generateToken(account, {token})};
+        return {token: await Story.token.generateToken(account, config.token)};
     }
 
     getAccounts(data) {
@@ -44,9 +35,20 @@ class AccountsController {
         return this.accountsService.createAccount(data);
     }
 
-    modifyAccount(data) {
+    async modifyAccount(data) {
         Story.validator.validate(data, modifyAccountSchema);
-        return this.accountsService.modifyAccount(data);
+        const [modifiedData] = await this.accountsService.modifyAccount(data);
+        await Story.rmqAdapter.publish({
+            message: {
+                domain: 'accounts',
+                event: 'accountModified',
+                params: modifiedData,
+                token: await Story.token.generateToken({}, config.token),
+            },
+            options: config.rmq.publish.exchanges.account,
+        });
+
+        return modifiedData;
     }
 
     getInterestCategories(data) {
