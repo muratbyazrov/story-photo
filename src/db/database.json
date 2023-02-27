@@ -3,8 +3,8 @@
     "driver": "pg",
     "user": "story",
     "password": "test",
-    "database": "story-account",
-    "schema": "story-account",
+    "database": "story-cat",
+    "schema": "story-cat",
     "host": "127.10.10.11"
   },
 
@@ -12,8 +12,8 @@
     "driver": "pg",
     "user": {"ENV": "PRODUCTION_USERNAME"},
     "password": {"ENV": "PRODUCTION_PASSWORD"},
-    "database": "story-account",
-    "schema": "story-account",
+    "database": "story-cat",
+    "schema": "story-cat",
     "host": "127.10.10.11"
   },
 
@@ -23,8 +23,8 @@
     "password": "test",
     "host": "127.10.10.11",
     "port": 5432,
-    "database": "story-account",
-    "schema": "story-account",
+    "database": "story-cat",
+    "schema": "story-cat",
     "ssl": "true"
   }
 }

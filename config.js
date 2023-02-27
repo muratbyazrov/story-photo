@@ -1,27 +1,20 @@
-require('dotenv')
-    .config();
-const {
-    DB_USER,
-    DB_HOST,
-    DB_PASSWORD,
-    DB_PORT,
-    HTTP_PORT,
-    HTTP_PATH,
-} = process.env;
-
 module.exports = {
     db: {
-        user: DB_USER || 'story',
-        host: DB_HOST || '127.10.10.11',
-        database: 'story-account',
-        schema: 'story-account',
-        password: DB_PASSWORD || 'test',
-        port: DB_PORT || 5432,
+        user: 'story',
+        host: '127.10.10.11',
+        database: 'story-cat',
+        schema: 'story-cat',
+        password: 'test',
+        port: 5432,
     },
     http: {
         host: '192.168.1.18',
-        port: HTTP_PORT || 3001,
-        path: HTTP_PATH || '/story-account-api/v1',
+        port: 3002,
+        path: '/story-cat-api/v1',
+    },
+    ws: {
+        host: '192.168.1.18',
+        port: 9002,
     },
     rmq: {
         connect: {
@@ -32,12 +25,12 @@ module.exports = {
         },
         consume: {
             exchange: 'story',
-            queue: 'account',
+            queue: 'cat',
             selfAck: true,
         },
         publish: {
             exchanges: {
-                account: {
+                cat: {
                     exchange: 'story',
                 },
             },
@@ -48,7 +41,7 @@ module.exports = {
         key: 'token-key',
         expiresIn: 60 * 1000,
         uncheckMethods: {
-            accounts: 'signIn',
+            cats: 'signIn',
         },
     },
 };
