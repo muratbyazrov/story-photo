@@ -1,31 +1,27 @@
 const {Story} = require('story-system');
-const {
-    getCats,
-    createCat,
-    modifyCat,
-} = require('./queries.js');
+const {getAccounts, createAccount, modifyAccount} = require('./queries.js');
 
-class CatsService {
-    getCats(data) {
+class AccountsService {
+    getAccounts(data) {
         return Story.dbAdapter.execQuery({
-            queryName: getCats,
+            queryName: getAccounts,
             params: data.params,
         });
     }
 
-    createCat(data) {
+    createAccount(data) {
         return Story.dbAdapter.execQuery({
-            queryName: createCat,
+            queryName: createAccount,
             params: data.params,
         });
     }
 
-    modifyCat(data) {
+    modifyAccount(data) {
         return Story.dbAdapter.execQuery({
-            queryName: modifyCat,
+            queryName: modifyAccount,
             params: data.params,
         });
     }
 }
 
-module.exports = {CatsService};
+module.exports = {AccountsService};

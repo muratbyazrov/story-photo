@@ -1,17 +1,16 @@
-CREATE TABLE IF NOT EXISTS cats (
-     cat_id BIGSERIAL NOT NULL UNIQUE
-    ,first_name TEXT NOT NULL
-    ,birthday DATE NOT NULL
+CREATE TABLE IF NOT EXISTS accounts (
+     account_id BIGSERIAL NOT NULL UNIQUE
+    ,photo_id BIGINT
     ,login TEXT NOT NULL
     ,password TEXT NOT NULL
 );
 
-INSERT INTO cats (
+INSERT INTO accounts (
      first_name
-    ,birthday
+    ,photo_id
     ,login
     ,password
 ) VALUES
-     ('Феликс', NOW(), 'felixLogin', 'felixPassword')
-    ,('Борис', NOW(), 'borisLogin', 'borisPassword');
+     ('Феликс', 'http://', 'felixLogin', 'felixPassword')
+    ,('Борис', 'http://', 'borisLogin', 'borisPassword');
 

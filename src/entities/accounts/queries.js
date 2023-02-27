@@ -1,6 +1,6 @@
 module.exports = {
-    createCat: `
-        INSERT INTO cats (
+    createAccount: `
+        INSERT INTO Accounts (
              first_name
             ,birthday
             ,login
@@ -12,30 +12,30 @@ module.exports = {
             ,:login
             ,:password
         )
-        ON CONFLICT (cat_id) DO NOTHING;`,
+        ON CONFLICT (Account_id) DO NOTHING;`,
 
-    getCats: `
+    getAccounts: `
         SELECT
-             cat_id AS "catId"
+             Account_id AS "AccountId"
             ,first_name AS "firstName"
             ,birthday
             ,login
             ,password
 
         FROM
-            cats AS ac
+            Accounts AS ac
         WHERE
             TRUE
             /*login: AND login = :login*/
             /*password: AND password = :password*/
-            /*catId: AND cat_id = :catId*/
+            /*AccountId: AND Account_id = :AccountId*/
             /*birthday: AND birthday = :birthday*/
         /*offset: OFFSET :offset*/
         /*limit: LIMIT :limit;*/`,
 
-    modifyCat: `
+    modifyAccount: `
         UPDATE
-            cats
+            Accounts
         SET
             modify_datetime = NOW()
             /*firstName: ,first_name = :firstName*/
@@ -44,9 +44,9 @@ module.exports = {
             /*password: ,password = :password*/
 
         WHERE
-            cat_id = :catId
+            Account_id = :AccountId
         RETURNING
-             cat_id AS "catId"
+             Account_id AS "AccountId"
             /*firstName: ,first_name AS "firstName" */
             /*birthday: ,birthday */
             /*login: ,login */

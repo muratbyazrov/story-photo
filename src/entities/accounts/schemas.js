@@ -1,7 +1,7 @@
 const {Story: {validator: {schemaItems: {string, limit}}}} = require('story-system');
 
-const getCatsSchema = {
-    id: 'getCatsSchema',
+const getAccountsSchema = {
+    id: 'getAccountsSchema',
     type: 'object',
     additionalItems: true,
     properties: {
@@ -9,7 +9,7 @@ const getCatsSchema = {
             type: 'object',
             properties: {
                 limit,
-                catId: string,
+                photoId: string,
                 login: string,
                 password: string,
             },
@@ -19,63 +19,45 @@ const getCatsSchema = {
     required: ['params'],
 };
 
-const createCatSchema = {
-    id: 'createCatSchema',
+const createAccountSchema = {
+    id: 'createAccountSchema',
     type: 'object',
     additionalItems: true,
     properties: {
         params: {
             type: 'object',
             properties: {
-                catId: string,
+                photoId: string,
                 wsSessionId: string,
             },
-            required: ['catId', 'wsSessionId'],
+            required: ['photoId', 'wsSessionId'],
         },
     },
     required: ['params'],
 };
 
-const modifyCatSchema = {
-    id: 'modifyCatSchema',
+const modifyAccountSchema = {
+    id: 'modifyAccountSchema',
     type: 'object',
     additionalItems: true,
     properties: {
         params: {
             type: 'object',
             properties: {
-                catId: string,
+                photoId: string,
                 firstName: string,
                 birthday: string,
                 login: string,
                 password: string,
             },
-            required: ['catId'],
-        },
-    },
-    required: ['params'],
-};
-
-const signInSchema = {
-    id: 'signInSchema',
-    type: 'object',
-    additionalItems: true,
-    properties: {
-        params: {
-            type: 'object',
-            properties: {
-                login: string,
-                password: string,
-            },
-            required: ['login', 'password'],
+            required: ['photoId'],
         },
     },
     required: ['params'],
 };
 
 module.exports = {
-    getCatsSchema,
-    createCatSchema,
-    modifyCatSchema,
-    signInSchema,
+    getAccountsSchema,
+    createAccountSchema,
+    modifyAccountSchema,
 };
