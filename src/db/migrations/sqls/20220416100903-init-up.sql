@@ -1,16 +1,8 @@
-CREATE TABLE IF NOT EXISTS accounts (
-     account_id BIGSERIAL NOT NULL UNIQUE
-    ,photo_id BIGINT
-    ,login TEXT NOT NULL
-    ,password TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS photos (
+     photo_id       BIGSERIAL               PRIMARY KEY
+    ,path_1         TEXT                    NOT NULL
+    ,path_2         TEXT                    NOT NULL
+    ,replica_1      BOOLEAN                 NOT NULL
+    ,replica_2      BOOLEAN
+    ,create_dttm    TIMESTAMP DEFAULT NOW() NOT NULL
 );
-
-INSERT INTO accounts (
-     first_name
-    ,photo_id
-    ,login
-    ,password
-) VALUES
-     ('Феликс', 'http://', 'felixLogin', 'felixPassword')
-    ,('Борис', 'http://', 'borisLogin', 'borisPassword');
-

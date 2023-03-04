@@ -1,11 +1,11 @@
 const {Story} = require('story-system');
 const config = require('./config.js');
-const {AccountsController} = require('./src/entities/accounts/accounts-controller.js');
+const {PhotosController} = require('./src/entities/photos/photos-controller.js');
 
 class App {
     constructor() {
         Story.gateInit(config, [
-            {EntityController: AccountsController, domain: 'photos'},
+            {EntityController: PhotosController, domain: 'photos'},
         ]);
         Story.adaptersInit(config);
     }

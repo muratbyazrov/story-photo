@@ -1,27 +1,27 @@
 const {Story} = require('story-system');
-const {getAccounts, createAccount, modifyAccount} = require('./queries.js');
+const {getPhotos, createPhoto, modifyPhoto} = require('./queries.js');
 
-class AccountsService {
-    getAccounts(data) {
+class PhotosService {
+    getPhotos(data) {
         return Story.dbAdapter.execQuery({
-            queryName: getAccounts,
+            queryName: getPhotos,
             params: data.params,
         });
     }
 
-    createAccount(data) {
+    createPhoto(data) {
         return Story.dbAdapter.execQuery({
-            queryName: createAccount,
+            queryName: createPhoto,
             params: data.params,
         });
     }
 
-    modifyAccount(data) {
+    modifyPhoto(data) {
         return Story.dbAdapter.execQuery({
-            queryName: modifyAccount,
+            queryName: modifyPhoto,
             params: data.params,
         });
     }
 }
 
-module.exports = {AccountsService};
+module.exports = {PhotosService};

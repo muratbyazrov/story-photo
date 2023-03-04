@@ -1,7 +1,7 @@
-const {Story: {validator: {schemaItems: {string, limit}}}} = require('story-system');
+const {Story: {validator: {schemaItems: {string, limit, boolean}}}} = require('story-system');
 
-const getAccountsSchema = {
-    id: 'getAccountsSchema',
+const getPhotosSchema = {
+    id: 'getPhotosSchema',
     type: 'object',
     additionalItems: true,
     properties: {
@@ -10,8 +10,6 @@ const getAccountsSchema = {
             properties: {
                 limit,
                 photoId: string,
-                login: string,
-                password: string,
             },
             required: ['limit'],
         },
@@ -19,25 +17,25 @@ const getAccountsSchema = {
     required: ['params'],
 };
 
-const createAccountSchema = {
-    id: 'createAccountSchema',
+const createPhotoSchema = {
+    id: 'createPhotoSchema',
     type: 'object',
     additionalItems: true,
     properties: {
         params: {
             type: 'object',
             properties: {
-                photoId: string,
-                wsSessionId: string,
+                path1: string,
+                replica1: boolean,
             },
-            required: ['photoId', 'wsSessionId'],
+            required: ['path1', 'replica1'],
         },
     },
     required: ['params'],
 };
 
-const modifyAccountSchema = {
-    id: 'modifyAccountSchema',
+const modifyPhotoSchema = {
+    id: 'modifyPhotoSchema',
     type: 'object',
     additionalItems: true,
     properties: {
@@ -45,19 +43,17 @@ const modifyAccountSchema = {
             type: 'object',
             properties: {
                 photoId: string,
-                firstName: string,
-                birthday: string,
-                login: string,
-                password: string,
+                replica2: boolean,
+                path2: string,
             },
-            required: ['photoId'],
+            required: ['photoId', 'replica2', 'path2'],
         },
     },
     required: ['params'],
 };
 
 module.exports = {
-    getAccountsSchema,
-    createAccountSchema,
-    modifyAccountSchema,
+    getPhotosSchema,
+    createPhotoSchema,
+    modifyPhotoSchema,
 };
